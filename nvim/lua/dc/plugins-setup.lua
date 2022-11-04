@@ -31,9 +31,23 @@ return packer.startup(function(use)
 	
   use("wbthomason/packer.nvim")
   use("jiangmiao/auto-pairs")
+  use("vim-airline/vim-airline")
+  use("vim-airline/vim-airline-themes")
+  use({ 
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      require("nvim-treesitter.install").update({ with_sync = true })
+    end
+  })
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
 
-
-	if packer_bootstrap then
-		require("packer").sync()
-	end
+  if packer_bootstrap then
+  	require("packer").sync()
+  end
 end)
